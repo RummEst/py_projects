@@ -1,0 +1,61 @@
+import os, sys, io
+import M5
+from M5 import *
+hn0 = None
+title0 = None
+rs0 = None
+line0 = None
+hn1 = None
+rs1 = None
+cl = {'EPSOND05FA7': -52, 'Janar-s-S24': -66, 'Kasutaja-Pi': -47, 'LG_Smart_Fr': -60, 'Manni': -68, 'mpy-esp32': -76}
+cl_names = list(cl.keys()) 
+cl_names += [''] * (12 - len(cl_names))
+cl[''] = ''
+hName_labels = []
+RSSI_labels = []
+def pvar(var, varstr="?var"):
+  print("\n # " + varstr + " -> \\ \n")
+  print(var)
+  print("\n")
+def setup():
+  global hn0, title0, rs0, line0, hn1, rs1, hName_labels, RSSI_labels, cl, cl_names
+  M5.begin()
+  pvar(cl, "cl")
+  pvar(cl_names, "cl_names")
+  title0 = Widgets.Title("HOSTNAME  /  RSSI", 4, 0xffffff, 0xff0000, Widgets.FONTS.DejaVu12)
+  line0 = Widgets.Line(0, 14, 144, 14, 0xffffff)
+  hn_X, rs_X = 2, 104
+  # CREATING THE LABELS
+  for i in range(0, 13):
+    y = 20 + i * 15                #   ABCDEFGXXXX
+    hName_labels.append(Widgets.Label("ABCDEFGXXXX", hn_X, y, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu12))
+    RSSI_labels.append(Widgets.Label("-000", rs_X, y, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu12))
+  #hn0 = Widgets.Label("ABCDEFGXXXX", 2, 20, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu12)
+  #rs0 = Widgets.Label("-100", 104, 20, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu12)
+  #hn1 = Widgets.Label("ABCDEFGXXXX", 2, 35, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu12)
+  #rs1 = Widgets.Label("-123", 104, 35, 1.0, 0xffffff, 0x222222, Widgets.FONTS.DejaVu12)
+  #label1.setText(str('Label\\nnewlne'))
+  pvar(hName_labels, "hName_labels")
+  pvar(RSSI_labels, "RSSI_labels")
+  print('hello M5')
+def fillLabels():
+  global hName_labels, RSSI_labels, cl, cl_names
+  print("filllabels()")
+  for i in range(0, 13):
+    hName_labels[i].setText(str(cl_names[i])) 
+    RSSI_labels[i].setText(str(cl[cl_names[i]]))
+def loop():
+  global hn0, title0, rs0, line0, hn1, rs1, hName_labels, RSSI_labels, cl, cl_names
+  M5.update()
+if __name__ == '__main__':
+  try:
+    setup()
+    fillLabels()
+    while True:
+      loop()
+  except (Exception, KeyboardInterrupt) as e:
+    try:
+      from utility import print_error_msg
+      print_error_msg(e)
+    except ImportError:
+      print("please update to latest firmware")
