@@ -22,7 +22,8 @@
 
 ## lgWebOSpython
 
-**Description:** Scripts to interface with LG webOS devices, such as TVs.
+**Description:** Scripts to interface with LG webOS devices, such as TVs.  
+> [DOCS](lgWebOSpython)
 
 ---
 
