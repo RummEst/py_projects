@@ -1,0 +1,113 @@
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+
+media = MediaControl(client)
+
+media.volume_up()          # Increase the volume by 1 unit. Doesn't return anything
+media.volume_down()        # Decrease the volume by 1 unit. Doesn't return anything
+media.get_volume()         # Get volume status. Returns something like:
+                           # {'scenario': 'mastervolume_tv_speaker', 'volume': 9, 'muted': False}
+media.set_volume(<int>)    # The argument is an integer from 1 to 100. Doesn't return anything.
+media.mute(status)         # status=True mutes the TV. status=Fale unmutes it.
+media.play()
+media.pause()
+media.stop()
+media.rewind()
+media.fast_forward()
+
+cur_media_output_source = media.get_audio_output()   # Returns the currently used audio output source as AudioOutputSource instance.
+audio_outputs = media.list_audio_output_sources()    # Returns a list of AudioOutputSource instances.
+media.set_audio_output(audio_outputs[0])             # .set_audio_output(..) accepts an AudioOutputSource instance.
+
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+
+system = SystemControl(client)
+
+system.notify("This is a notification message!",  # Show a notification message on the TV.
+              icon_bytes=data,                    # optional: the icon to be displayed,
+                                                  # e.g.: requests.get(url).content
+              icon_ext="png")                     # optional: specify icon type if icon is specified above
+system.power_off()                                # Turns off the TV. There is no way to turn it
+                                                  # back on programmically unless you use
+                                                  # something like Wake-on-LAN.
+system.info()                                     # Returns a dict with keys such as product_name,
+                                                  # model_name, # major_ver, minor_ver etc.
+system.screen_off()                               # Energy Saving: Turns off the screen.
+system.screen_on()                                # Energy Saving: Turns the screen back on.
+
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+
+inp = InputControl(client)
+
+inp.type("This sends keyboard input!")            # This sends keystrokes, but needs the keyboard to
+                                                  # be displayed on the screen.
+inp.enter()                                       # Return key.
+inp.delete(10)                                    # Backspace 10 chars
+
+inp.connect_input()
+inp.move(10, 10)    # Moves mouse
+inp.click()         # Click where the mouse pointer is. It sometimes also acts as the center "OK"
+                    # button on the remote.
+inp.ok()
+inp.up()
+inp.down()
+inp.left()
+inp.right()
+inp.home()
+inp.back()
+inp.dash()          # The right side menu that appears with Live button
+inp.info()
+inp.num_1()         # Number keys...
+inp.num_2()
+inp.num_3()
+inp.num_4()
+inp.num_5()
+inp.num_6()
+inp.num_7()
+inp.num_8()
+inp.num_9()
+inp.num_0()
+inp.asterisk()      # Literally just an "*"
+inp.cc()            # Closed captioning
+inp.exit()
+inp.red()           # Colored buttons
+inp.green()
+inp.yellow()
+inp.blue()
+inp.menu()          # the menu for adjusting settings for the television
+inp.mute()          # The remaining commands are also available in either MediaControl or TvControl
+inp.volume_up()
+inp.volume_down()
+inp.channel_up()
+inp.channel_down()
+inp.play()
+inp.pause()
+inp.stop()
+inp.fastforward()
+inp.rewind()
+
+inp.disconnect_input()
+
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+
+channel = TvControl(client)
+
+channel.channel_down()
+channel.channel_up()
+channel.channel_list()
+channel.get_current_channel()
+channel.get_current_program() # Returns the current channel and the EPG data
+channel.set_channel_with_id(channelId) # channelId can be found in channel_list(), get_current_channel() or get_current_program()
+
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+
+
