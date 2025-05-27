@@ -4,7 +4,7 @@ import threading
 
 sock=socket.socket(socket.AF_INET,socket.SOCK_DGRAM) #Creates a socket
  #Creates packet
-ip = socket.gethostbyname('garage.lan')
+ip = socket.gethostbyname('victim.lan')
 port = 9000
 sent = 0
 print("ATTACK garage.lan @ 9000")
