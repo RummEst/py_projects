@@ -1,2 +1,2 @@
 # py_projects
-Metadata is from pycharm ususally
+Metadata is from pycharm usually
