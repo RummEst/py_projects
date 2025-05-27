@@ -1,7 +1,11 @@
-# selection of python projects
 
-A collection of Python projects developed using PyCharm. Each project explores different aspects of Python programming, ranging from hardware interfacing to web automation.  
-Metadata is ususally from pycharm   
+# Selection of python projects  
+
+> - A collection of Python projects developed using PyCharm. Each project explores different aspects of Python programming, ranging from hardware interfacing to web automation.  
+> - Metadata is ususally from pycharm  
+
+# AI Description:
+
 ---
 
 ## false-chrome
@@ -49,7 +53,3 @@ Metadata is ususally from pycharm
 ## License
 
 This repository is open-source and available under the [MIT License](LICENSE).
-
----
-
-Feel free to contribute or raise issues for any of the projects. Happy coding!
